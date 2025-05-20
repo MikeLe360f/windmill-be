@@ -44,4 +44,22 @@ export class WindmillService {
   async forwardChatRequest(query: string, projectId: string) {
     return this.chatService.chat(query, projectId);
   }
+
+  async getPeopleLikeYou(data: any) {
+    try {
+      const response = await axios.post(
+        `${this.windmillApiUrl}/api/r/epos/people-like-you`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": this.apiKey,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(`Failed to get people like you data: ${error.message}`);
+    }
+  }
 }

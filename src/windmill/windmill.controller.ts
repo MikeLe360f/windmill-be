@@ -10,4 +10,9 @@ export class WindmillController {
     console.log("chat", body);
     return this.windmillService.forwardChatRequest(body.query, body.project_id);
   }
+
+  @Post("people-like-you")
+  async getPeopleLikeYou(@Body() body: any) {
+    return this.windmillService.getPeopleLikeYou(body);
+  }
 }
